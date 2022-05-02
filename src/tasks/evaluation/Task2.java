@@ -5,7 +5,7 @@ import java.util.*;
 public class Task2 {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static String beautify(Map<Integer, Float> map) {
+    public static String format(Map<Integer, Float> map) {
         StringBuilder sb = new StringBuilder();
 
         for (int key : map.keySet()) {
@@ -18,7 +18,7 @@ public class Task2 {
 
     public static void main(String[] args) {
         var salvation = new ExpressionSolver().solve(scanner.nextLine());
-        System.out.print(beautify(salvation));
+        System.out.print(format(salvation));
     }
 }
 
@@ -50,7 +50,7 @@ class Node {
 
     public Node() {}
 
-    private Node(String src, int minIncluded, int maxIncluded) {
+    public Node(String src, int minIncluded, int maxIncluded) {
         this.src = src;
         from = minIncluded;
         to = maxIncluded;
@@ -109,6 +109,7 @@ class Operator extends Node {
 }
 
 abstract class BiOperator extends Operator {
+    
     public BiOperator(String src, int precedence) { super(src, precedence); }
 
     public abstract int eval(int op1, int op2);
@@ -133,6 +134,7 @@ abstract class BiOperator extends Operator {
 }
 
 class ExpressionSolver {
+    
     List<Node> toListOfNodes(String str) {
         StringBuilder sb = new StringBuilder();
         List<Node> result = new ArrayList<>();
